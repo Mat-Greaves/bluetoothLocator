@@ -14,7 +14,8 @@ import { HttpModule } from "@angular/http"
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { firebaseConfig } from './app.firebaseconfig'
+import { firebaseConfig } from './app.firebaseconfig';
+import { BLE } from '@ionic-native/BLE';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { firebaseConfig } from './app.firebaseconfig'
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ObjectsProvider,
+    BLE,
   ]
 })
 export class AppModule {}

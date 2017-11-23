@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/mergeMapTo';
 import 'rxjs/add/operator/map';
+import { BLE } from '@ionic-native/BLE';
 
 /**
  * Generated class for the LocatorPage page.
@@ -22,24 +23,16 @@ export class LocatorPage {
   friend: Friend;
   distance: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  devices: Observable<any>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private ble: BLE) {
+    this.devices = ble.startScan([]);
     this.friend = navParams.get('friend');
-    this.distance = Math.floor(Math.random() * 30);
   }
 
-  // private getDistance() {
-  //   this.distance = Observable
-  //     .interval(1000)
-  //     .mergeMapTo(this.fetchDistance())
-  //     .map(res => res.json())
-  // }
-  //
-  // private fetchDistance() {
-  //   return {
-  //     distance: Math.floor(Math.random() * 30)
-  //   }
-  // }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LocatorPage');
+
   }
+
 }
