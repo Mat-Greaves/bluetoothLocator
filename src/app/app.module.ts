@@ -15,7 +15,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './app.firebaseconfig';
-import { BLE } from '@ionic-native/BLE';
+import { BeaconProvider } from '../providers/beacon/beacon';
+import { IBeacon } from '@ionic-native/ibeacon';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { BLE } from '@ionic-native/BLE';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ObjectsProvider,
-    BLE,
+    BeaconProvider,
+    IBeacon
   ]
 })
 export class AppModule {}
