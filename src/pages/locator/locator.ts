@@ -38,11 +38,13 @@ export class LocatorPage {
         this.listenToBeaconEvents();
         }
       });
+    }).then( () => {
+      this.beaconProvider.startAdvertising();
     });
   }
 
   listenToBeaconEvents() {
-    this.events.subscribe('didRangeBeaconsInRegion', (data) => {
+    this.events.subscribe('didRangeBeaconsInRegion', async (data) => {
     // update the UI with the beacon list
     console.log(data);
     this.zone.run(() => {
@@ -52,6 +54,9 @@ export class LocatorPage {
       let beaconObject = new Beacon(beacon);
       this.beacons.push(beaconObject);
     });
+    this.beaconProvider.getAdvertising().then( res => {
+      console.log('beacon is:' + res);
+    })
 
   });
 

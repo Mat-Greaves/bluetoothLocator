@@ -37,9 +37,6 @@ export class BeaconProvider {
   this.region = this.ibeacon.BeaconRegion('deskBeacon', 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA');
   this.myRegion = this.ibeacon.BeaconRegion('me', 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA', 0, 1, false);
 
-  //advertise region
-  this.ibeacon.startAdvertising(this.region);
-
   // create a new delegate and register it with the native layer
   this.delegate = this.ibeacon.Delegate();
 
@@ -67,7 +64,26 @@ export class BeaconProvider {
       resolve(false);
     }
     });
-
     return promise;
+    }
+
+    startAdvertising(): any {
+      let promise = new Promise((resolve, reject) => {
+        console.log('starting!')
+        this.ibeacon.startAdvertising(this.myRegion, -30)
+          .then(
+            () => {
+              resolve(true);
+            },
+            error => {
+              console.error('Failed to start advertising ', error);
+              resolve(false);
+            });
+        return promise;
+      });
+    }
+
+    getAdvertising(): any {
+      return this.ibeacon.isAdvertising();
     }
   }
