@@ -48,17 +48,17 @@ export class BeaconProvider {
     },
     error => console.error()
   );
-
+  resolve(true);
   // start ranging
-  this.ibeacon.startRangingBeaconsInRegion(this.region)
-    .then(
-      () => {
-        resolve(true);
-      },
-      error => {
-        console.error('Failed to begin monitoring: ', error);
-        resolve(false);
-      });
+  // this.ibeacon.startRangingBeaconsInRegion(this.region)
+  //   .then(
+  //     () => {
+  //       resolve(true);
+  //     },
+  //     error => {
+  //       console.error('Failed to begin monitoring: ', error);
+  //       resolve(false);
+  //     });
     } else {
       console.error("This application needs to be running on a device");
       resolve(false);
@@ -69,8 +69,8 @@ export class BeaconProvider {
 
     startAdvertising(): any {
       let promise = new Promise((resolve, reject) => {
-        console.log('starting!')
-        this.ibeacon.startAdvertising(this.myRegion, -30)
+        console.log('start advertising');
+        this.ibeacon.startAdvertising(this.myRegion, 100)
           .then(
             () => {
               resolve(true);

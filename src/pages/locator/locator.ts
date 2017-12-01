@@ -38,28 +38,36 @@ export class LocatorPage {
         this.listenToBeaconEvents();
         }
       });
-    }).then( () => {
+    })
+    .then( () => {
       this.beaconProvider.startAdvertising();
+      this.getStatus();
     });
   }
 
+  getStatus() {
+    setTimeout( () => {
+      this.beaconProvider.getAdvertising().then( res => {
+        console.log('beacon is:' + res);
+      }).then( () => this.getStatus())
+    }, 1000)
+
+  }
   listenToBeaconEvents() {
     this.events.subscribe('didRangeBeaconsInRegion', async (data) => {
-    // update the UI with the beacon list
-    console.log(data);
-    this.zone.run(() => {
-    this.beacons = [];
-    let beaconList = data.beacons;
-    beaconList.forEach((beacon) => {
-      let beaconObject = new Beacon(beacon);
-      this.beacons.push(beaconObject);
+      // update the UI with the beacon list
+      console.log(data);
+      this.zone.run(() => {
+        this.beacons = [];
+        let beaconList = data.beacons;
+        beaconList.forEach((beacon) => {
+          let beaconObject = new Beacon(beacon);
+          this.beacons.push(beaconObject);
+        });
+        this.beaconProvider.getAdvertising().then( res => {
+          console.log('beacon is:' + res);
+        })
+      });
     });
-    this.beaconProvider.getAdvertising().then( res => {
-      console.log('beacon is:' + res);
-    })
-
-  });
-
-});
-}
+  }
 }
