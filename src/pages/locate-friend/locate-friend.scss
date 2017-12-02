@@ -1,3 +1,41 @@
 page-locate-friend {
+  .bgIn {
+    background-color: black;
+  }
+  .bgOut {
+    background-color: white;
+  }
+  .midIn {
+    background-color: black;
+    border-radius: 50%;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 0 auto;
+    align-items: center;
+  }
+  .midOut {
+    background-color: white;
+    border-radius: 50%;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 0 auto;
+    align-items: center;
+  }
+  .innerIn {
+    background-color: black;
+    border-radius: 50%;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 0 auto;
+    align-items: center;
 
+  }
+  .innterOut {
+    background-color: white;
+    border-radius: 50%;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 0 auto;
+    align-items: center;
+  }
 }

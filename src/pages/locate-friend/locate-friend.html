@@ -13,6 +13,9 @@
 </ion-header>
 
 
-<ion-content>
-  {{friend.rssi}}
+<ion-content [ngClass]="!friend.rssi ? 'bgIn' : 'bgOut'">
+  <div [ngClass]="friend.rssi<-60 ? 'midIn' : 'midOut'">
+    <div [ngClass]="friend.rssi>=-60 ? 'innerIn' : 'innerOut'">
+    </div>
+  </div>
 </ion-content>
