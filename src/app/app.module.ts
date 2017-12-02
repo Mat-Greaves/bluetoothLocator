@@ -9,6 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { LocatorPage } from '../pages/locator/locator';
 import { AddFriendPage } from '../pages/add-friend/add-friend'
 import { UserSelectPage } from '../pages/user-select/user-select';
+import { MenuPage } from '../pages/menu/menu';
+import { ManagePage } from '../pages/manage/manage';
+import { LocateFriendPage } from '../pages/locate-friend/locate-friend';
 
 import { ObjectsProvider } from '../providers/objects/objects';
 import { HttpModule } from "@angular/http"
@@ -26,7 +29,10 @@ import { IBeacon } from '@ionic-native/ibeacon';
     HomePage,
     LocatorPage,
     AddFriendPage,
-    UserSelectPage
+    UserSelectPage,
+    MenuPage,
+    ManagePage,
+    LocateFriendPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,10 @@ import { IBeacon } from '@ionic-native/ibeacon';
     HomePage,
     LocatorPage,
     AddFriendPage,
-    UserSelectPage
+    UserSelectPage,
+    MenuPage,
+    ManagePage,
+    LocateFriendPage
   ],
   providers: [
     StatusBar,

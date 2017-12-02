@@ -10,6 +10,8 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/mergeMapTo';
 import 'rxjs/add/operator/map';
 
+import { LocateFriendPage } from '../locate-friend/locate-friend';
+
 /**
  * Generated class for the LocatorPage page.
  *
@@ -81,5 +83,9 @@ export class LocatorPage {
         });
       });
     });
+  }
+
+  friendButtonOnClick(friend) {
+    this.navCtrl.push(LocateFriendPage, { friend: friend });
   }
 }

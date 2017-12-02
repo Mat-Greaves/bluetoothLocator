@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../providers/objects/objects';
 import { LocatorPage } from '../locator/locator';
+import { MenuPage } from '../menu/menu';
 
 /**
  * Generated class for the UserSelectPage page.
@@ -35,6 +36,6 @@ export class UserSelectPage {
   }
 
   friendButtonOnClick(user: any) {
-    this.navCtrl.push(LocatorPage, { user: user});
+    this.navCtrl.push(MenuPage, { user: user});
   }
 }
