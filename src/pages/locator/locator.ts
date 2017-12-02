@@ -23,12 +23,20 @@ import 'rxjs/add/operator/map';
   templateUrl: 'locator.html',
 })
 export class LocatorPage {
-  friend: Friend;
-  beacons: Beacon[] = [];
+  friendBeacons: Beacon[] = [];
+  user: any;
+  me: any;
+  beaconRegion: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone,
   public platform: Platform, public beaconProvider: BeaconProvider, public events: Events ) {
-    this.friend = navParams.get('friend');
+    this.user = navParams.get('user');
+    this.beaconRegion = {
+      uuid: 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA',
+      major: this.user.details.major,
+      minor: this.user.details.minor
+    }
+    console.log(this.user.friends)
   }
 
   ionViewDidLoad() {
@@ -40,8 +48,7 @@ export class LocatorPage {
       });
     })
     .then( () => {
-      this.beaconProvider.startAdvertising();
-      this.getStatus();
+      this.beaconProvider.startAdvertising(this.beaconRegion);
     });
   }
 
@@ -56,17 +63,22 @@ export class LocatorPage {
   listenToBeaconEvents() {
     this.events.subscribe('didRangeBeaconsInRegion', async (data) => {
       // update the UI with the beacon list
-      console.log(data);
       this.zone.run(() => {
-        this.beacons = [];
-        let beaconList = data.beacons;
-        beaconList.forEach((beacon) => {
-          let beaconObject = new Beacon(beacon);
-          this.beacons.push(beaconObject);
-        });
-        this.beaconProvider.getAdvertising().then( res => {
-          console.log('beacon is:' + res);
+        this.friendBeacons = [];
+        const filteredBeacons = data.beacons.filter( beacon => {
+          let count = 0;
+          for(let i = 0; i < this.user.friends.length; i++){
+            if(Number(beacon.major) === this.user.friends[i].major && Number(beacon.minor) === this.user.friends[i].minor){
+              this.user.friends[i].rssi = beacon.rssi;
+              return true;
+            }
+          }
+          return false;
         })
+        filteredBeacons.forEach((beacon) => {
+          let beaconObject = new Beacon(beacon);
+          this.friendBeacons.push(beaconObject);
+        });
       });
     });
   }

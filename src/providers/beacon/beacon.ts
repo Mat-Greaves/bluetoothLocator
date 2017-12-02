@@ -35,7 +35,6 @@ export class BeaconProvider {
 
   // setup a beacon region – CHANGE THIS TO YOUR OWN UUID
   this.region = this.ibeacon.BeaconRegion('deskBeacon', 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA');
-  this.myRegion = this.ibeacon.BeaconRegion('me', 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA', 0, 1, false);
 
   // create a new delegate and register it with the native layer
   this.delegate = this.ibeacon.Delegate();
@@ -48,17 +47,16 @@ export class BeaconProvider {
     },
     error => console.error()
   );
-  resolve(true);
   // start ranging
-  // this.ibeacon.startRangingBeaconsInRegion(this.region)
-  //   .then(
-  //     () => {
-  //       resolve(true);
-  //     },
-  //     error => {
-  //       console.error('Failed to begin monitoring: ', error);
-  //       resolve(false);
-  //     });
+  this.ibeacon.startRangingBeaconsInRegion(this.region)
+    .then(
+      () => {
+        resolve(true);
+      },
+      error => {
+        console.error('Failed to begin monitoring: ', error);
+        resolve(false);
+      });
     } else {
       console.error("This application needs to be running on a device");
       resolve(false);
@@ -67,10 +65,11 @@ export class BeaconProvider {
     return promise;
     }
 
-    startAdvertising(): any {
+    startAdvertising(region): any {
       let promise = new Promise((resolve, reject) => {
         console.log('start advertising');
-        this.ibeacon.startAdvertising(this.myRegion, 100)
+        const beaconRegion = this.ibeacon.BeaconRegion('myBeacon',region.uuid,region.major,region.minor,false);
+        this.ibeacon.startAdvertising(beaconRegion, 100)
           .then(
             () => {
               resolve(true);

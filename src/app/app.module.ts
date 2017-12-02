@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LocatorPage } from '../pages/locator/locator';
 import { AddFriendPage } from '../pages/add-friend/add-friend'
+import { UserSelectPage } from '../pages/user-select/user-select';
 
 import { ObjectsProvider } from '../providers/objects/objects';
 import { HttpModule } from "@angular/http"
@@ -18,12 +19,14 @@ import { firebaseConfig } from './app.firebaseconfig';
 import { BeaconProvider } from '../providers/beacon/beacon';
 import { IBeacon } from '@ionic-native/ibeacon';
 
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LocatorPage,
     AddFriendPage,
+    UserSelectPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { IBeacon } from '@ionic-native/ibeacon';
     MyApp,
     HomePage,
     LocatorPage,
-    AddFriendPage
+    AddFriendPage,
+    UserSelectPage
   ],
   providers: [
     StatusBar,

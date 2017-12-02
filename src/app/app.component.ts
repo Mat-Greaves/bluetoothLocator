@@ -5,18 +5,19 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../pages/home/home';
+import { UserSelectPage } from '../pages/user-select/user-select';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = UserSelectPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(auth => {
       if (!auth)
-        this.rootPage = HomePage; //make this login page
+        this.rootPage = UserSelectPage; //make this login page
       else
-        this.rootPage = HomePage;
+        this.rootPage = UserSelectPage;
     });
 
     platform.ready().then(() => {
