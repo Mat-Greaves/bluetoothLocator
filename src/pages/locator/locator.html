@@ -6,7 +6,19 @@
 
 <ion-content>
   <ion-list no-lines>
-    <ion-item *ngFor="let beacon of beacons">
+    <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col>RSSI Average</ion-col>
+        <ion-col>{{currentRSSI}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Thing</ion-col>
+        <ion-col>{{thing}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+    <!-- <ion-item *ngFor="let beacon of beacons">
       <ion-grid>
         <ion-row>
           <ion-col>Major</ion-col>
@@ -21,6 +33,23 @@
           <ion-col>{{beacon.rssi}}</ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
+
+   <ion-card>
+     <ion-card-header>
+       Line Chart
+     </ion-card-header>
+     <ion-card-content>
+       <canvas #lineCanvas></canvas>
+     </ion-card-content>
+   </ion-card>
+   <ion-card>
+     <ion-card-header>
+       Line Chart
+     </ion-card-header>
+     <ion-card-content>
+       <canvas #lineCanvas1></canvas>
+     </ion-card-content>
+   </ion-card>
 </ion-content>
