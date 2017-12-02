@@ -1,55 +1,18 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>{{this.friend.friendName}}</ion-title>
+    <ion-title>Locator</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list no-lines>
-    <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col>RSSI Average</ion-col>
-        <ion-col>{{currentRSSI}}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>Thing</ion-col>
-        <ion-col>{{thing}}</ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-    <!-- <ion-item *ngFor="let beacon of beacons">
-      <ion-grid>
+    <button ion-item *ngFor="let friend of user.friends" (click)="friendButtonOnClick(friend)">
+      <ion-grid [ngClass]="(!friend.rssi) ? 'invisible' : (friend.rssi>= -60 ? 'close' : 'far')">
         <ion-row>
-          <ion-col>Major</ion-col>
-          <ion-col>{{beacon.major}}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>Minor</ion-col>
-          <ion-col>{{beacon.minor}}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>RSSI</ion-col>
-          <ion-col>{{beacon.rssi}}</ion-col>
+          <ion-col>{{friend.name}}</ion-col>
+          <ion-col>{{friend.rssi}}</ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item> -->
+    </button>
   </ion-list>
-
-   <ion-card>
-     <ion-card-header>
-       Line Chart
-     </ion-card-header>
-     <ion-card-content>
-       <canvas #lineCanvas></canvas>
-     </ion-card-content>
-   </ion-card>
-   <ion-card>
-     <ion-card-header>
-       Line Chart
-     </ion-card-header>
-     <ion-card-content>
-       <canvas #lineCanvas1></canvas>
-     </ion-card-content>
-   </ion-card>
 </ion-content>

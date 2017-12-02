@@ -13,10 +13,6 @@ export class BeaconProvider {
   delegate: any;
   region: any;
   myRegion: any;
-  icyRegion: any;
-  blueberryRegion: any;
-  mintRegion: any;
-  estimoteRegion: any;
 
   constructor(public platform: Platform, public events: Events, private ibeacon: IBeacon) {
   }
@@ -39,11 +35,7 @@ export class BeaconProvider {
 
   // setup a beacon region – CHANGE THIS TO YOUR OWN UUID
   this.region = this.ibeacon.BeaconRegion('deskBeacon', 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA');
-  this.myRegion = this.ibeacon.BeaconRegion('me', 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA', 0, 1, false);
-  this.estimoteRegion = this.ibeacon.BeaconRegion('me','b9407f30-f5f8-466e-aff9-25556b57fe6d');
-  this.icyRegion = this.ibeacon.BeaconRegion('icyMarshmellow', 'b9407f30-f5f8-466e-aff9-25556b57fe6d', 14381, 15414, false);
-  this.blueberryRegion = this.ibeacon.BeaconRegion('blueberryPie', 'b9407f30-f5f8-466e-aff9-25556b57fe6d', 55395, 4865, false);
-  this.mintRegion = this.ibeacon.BeaconRegion('mintCocktail', 'b9407f30-f5f8-466e-aff9-25556b57fe6d', 14381, 15414, false);
+
   // create a new delegate and register it with the native layer
   this.delegate = this.ibeacon.Delegate();
 
@@ -55,8 +47,7 @@ export class BeaconProvider {
     },
     error => console.error()
   );
-  resolve(true);
-  //start ranging
+  // start ranging
   this.ibeacon.startRangingBeaconsInRegion(this.region)
     .then(
       () => {
@@ -74,10 +65,11 @@ export class BeaconProvider {
     return promise;
     }
 
-    startAdvertising(): any {
+    startAdvertising(region): any {
       let promise = new Promise((resolve, reject) => {
         console.log('start advertising');
-        this.ibeacon.startAdvertising(this.myRegion, 100)
+        const beaconRegion = this.ibeacon.BeaconRegion('myBeacon',region.uuid,region.major,region.minor,false);
+        this.ibeacon.startAdvertising(beaconRegion, 100)
           .then(
             () => {
               resolve(true);

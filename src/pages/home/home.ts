@@ -26,7 +26,7 @@ export class HomePage {
   }
 
   friendButtonOnClick(friend: Friend) {
-    this.navCtrl.push(LocatorPage, {friend : friend});
+    this.navCtrl.push(LocatorPage, { friend : friend});
   }
 
   addButtonOnCick() {

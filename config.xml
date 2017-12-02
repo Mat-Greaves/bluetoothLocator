@@ -86,7 +86,4 @@
     <plugin name="com.unarin.cordova.beacon" spec="~3.5.2" />
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="~6.3.0" />
-    <plugin name="cordova-plugin-vibration" spec="^2.1.6" />
-    <plugin name="cordova-plugin-hotspot" spec="^1.2.9" />
-    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
 </widget>

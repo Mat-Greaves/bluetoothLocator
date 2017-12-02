@@ -23,6 +23,20 @@ export class Friend {
   }
 }
 
+export class User {
+  details: {
+    major: number;
+    minor: number;
+    name: string;
+  }
+  friends: {
+    name: string;
+    major: number;
+    minor: number;
+    colour: string;
+  }[]
+}
+
 export class Beacon {
   uuid: string;
   major: number;

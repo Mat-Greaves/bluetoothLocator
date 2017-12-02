@@ -8,6 +8,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LocatorPage } from '../pages/locator/locator';
 import { AddFriendPage } from '../pages/add-friend/add-friend'
+import { UserSelectPage } from '../pages/user-select/user-select';
+import { MenuPage } from '../pages/menu/menu';
+import { ManagePage } from '../pages/manage/manage';
+import { LocateFriendPage } from '../pages/locate-friend/locate-friend';
 
 import { ObjectsProvider } from '../providers/objects/objects';
 import { HttpModule } from "@angular/http"
@@ -17,10 +21,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './app.firebaseconfig';
 import { BeaconProvider } from '../providers/beacon/beacon';
 import { IBeacon } from '@ionic-native/ibeacon';
-import { Vibration } from '@ionic-native/Vibration';
-import { WifiProvider } from '../providers/wifi/wifi';
-import { Hotspot, HotspotNetwork } from '@ionic-native/hotspot';
-import { AndroidPermissions } from '@ionic-native/android-permissions';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +29,10 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     HomePage,
     LocatorPage,
     AddFriendPage,
+    UserSelectPage,
+    MenuPage,
+    ManagePage,
+    LocateFriendPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,11 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     MyApp,
     HomePage,
     LocatorPage,
-    AddFriendPage
+    AddFriendPage,
+    UserSelectPage,
+    MenuPage,
+    ManagePage,
+    LocateFriendPage
   ],
   providers: [
     StatusBar,
@@ -50,11 +59,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ObjectsProvider,
     BeaconProvider,
-    IBeacon,
-    Vibration,
-    WifiProvider,
-    Hotspot,
-    AndroidPermissions
+    IBeacon
   ]
 })
 export class AppModule {}
