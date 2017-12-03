@@ -5,19 +5,19 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="yellow">
     <ion-title>Menu</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
-    <button ion-item (click)="findButtonOnClick(user)">
-      <h1>Find</h1>
+<ion-content [ngClass]="'background'">
+  <ion-list no-lines>
+    <button ion-item (click)="findButtonOnClick(user)" [ngClass]="'find'">
+      Find
     </button>
-    <button ion-item (click)="manageButtonOnClick(user)">
-      <h1>Manage</h1>
+    <button ion-item (click)="manageButtonOnClick(user)" [ngClass]="'manage'">
+      Mates
     </button>
   </ion-list>
 </ion-content>

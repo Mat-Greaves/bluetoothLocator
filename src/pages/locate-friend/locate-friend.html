@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="yellow">
     <ion-title>{{friend.name}}</ion-title>
   </ion-navbar>
 
@@ -14,8 +14,8 @@
 
 
 <ion-content [ngClass]="!friend.rssi ? 'bgIn' : 'bgOut'">
-  <div [ngClass]="friend.rssi<-60 ? 'midIn' : 'midOut'">
+    <div [ngClass]="friend.rssi<-60 ? 'midIn' : 'midOut'">
+    </div>
     <div [ngClass]="friend.rssi>=-60 ? 'innerIn' : 'innerOut'">
     </div>
-  </div>
 </ion-content>

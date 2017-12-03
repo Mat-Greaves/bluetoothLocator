@@ -1,11 +1,26 @@
 page-locator {
+  .background {
+    background-color: #000000;
+  }
   .close{
-    background-color: #C5DCFC;
+    background-color: #FFFF00;
+    line-height: 20vh;
+    font-size: 60pt;
+    color: #000000;
+    font-style: bold;
+    text-align: center;
   }
   .far{
-    background-color: #262B69;
+    background-color: #777700;
+    line-height: 20vh;
+    font-size: 60pt;
+    text-align: center;
   }
   .invisible{
-    background-color: #123F12;
+    background-color: #000000;
+    line-height: 20vh;
+    font-size: 60pt;
+    text-align: center;
+    color: #FFFF00;
   }
 }

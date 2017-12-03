@@ -14,8 +14,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'manage.html',
 })
 export class ManagePage {
+  user: any;
+  friends: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.user = navParams.get('user');
+    this.friends = this.user.friends;
   }
 
   ionViewDidLoad() {

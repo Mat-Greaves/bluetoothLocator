@@ -21,6 +21,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './app.firebaseconfig';
 import { BeaconProvider } from '../providers/beacon/beacon';
 import { IBeacon } from '@ionic-native/ibeacon';
+import { Vibration } from '@ionic-native/vibration';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { IBeacon } from '@ionic-native/ibeacon';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ObjectsProvider,
     BeaconProvider,
-    IBeacon
+    IBeacon,
+    Vibration
   ]
 })
 export class AppModule {}

@@ -1,17 +1,14 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="yellow">
     <ion-title>Locator</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content [ngClass]="'background'">
   <ion-list no-lines>
-    <button ion-item *ngFor="let friend of user.friends" (click)="friendButtonOnClick(friend)">
-      <ion-grid [ngClass]="(!friend.rssi) ? 'invisible' : (friend.rssi>= -60 ? 'close' : 'far')">
-        <ion-row>
-          <ion-col>{{friend.name}}</ion-col>
-          <ion-col>{{friend.rssi}}</ion-col>
-        </ion-row>
+    <button ion-item *ngFor="let friend of user.friends" (click)="friendButtonOnClick(friend)" [ngClass]="(!friend.rssi) ? 'invisible' : (friend.rssi>= -80 ? 'close' : 'far')">
+      <ion-grid>
+        {{friend.name}}
       </ion-grid>
     </button>
   </ion-list>

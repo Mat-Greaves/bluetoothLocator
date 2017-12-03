@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import { NgZone } from '@angular/core'
 import { IBeacon } from '@ionic-native/ibeacon';
 import { BeaconProvider } from '../../providers/beacon/beacon'
+import { Vibration } from '@ionic-native/vibration';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/mergeMapTo';
 import 'rxjs/add/operator/map';
@@ -31,14 +32,17 @@ export class LocatorPage {
   beaconRegion: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone,
-  public platform: Platform, public beaconProvider: BeaconProvider, public events: Events ) {
+  public platform: Platform, public beaconProvider: BeaconProvider, public events: Events, private vibration: Vibration) {
     this.user = navParams.get('user');
     this.beaconRegion = {
       uuid: 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA',
       major: this.user.details.major,
       minor: this.user.details.minor
     }
-    console.log(this.user.friends)
+    for (let friend of this.user.friends ) {
+      friend.seen = false;
+      friend.counter = 0;
+    }
   }
 
   ionViewDidLoad() {
@@ -64,6 +68,7 @@ export class LocatorPage {
   }
   listenToBeaconEvents() {
     this.events.subscribe('didRangeBeaconsInRegion', async (data) => {
+      console.log('here');
       // update the UI with the beacon list
       this.zone.run(() => {
         this.friendBeacons = [];
@@ -72,6 +77,8 @@ export class LocatorPage {
           for(let i = 0; i < this.user.friends.length; i++){
             if(Number(beacon.major) === this.user.friends[i].major && Number(beacon.minor) === this.user.friends[i].minor){
               this.user.friends[i].rssi = beacon.rssi;
+              this.user.friends[i].counter = 0;
+              this.user.friends[i].seen = true;
               return true;
             }
           }
@@ -81,7 +88,31 @@ export class LocatorPage {
           let beaconObject = new Beacon(beacon);
           this.friendBeacons.push(beaconObject);
         });
+        let foundClose = false;
+        let foundFar = false;
+        for (let beacon of filteredBeacons) {
+          if(Number(beacon.rssi) >= -80) {
+            foundClose = true;
+          } else if(beacon.rssi) {
+            foundFar = true;
+          }
+        }
+        if(foundClose) {
+          this.vibration.vibrate([100,100,100]);
+        } else if (foundFar) {
+          this.vibration.vibrate(100);
+        }
       });
+      for(let friend of this.user.friends) {
+        if(!friend.seen){
+          friend.counter++;
+        }
+        if(friend.counter>5){
+          friend.rssi = undefined
+          friend.counter = 0;
+        }
+        friend.seen = false;
+      }
     });
   }
 
