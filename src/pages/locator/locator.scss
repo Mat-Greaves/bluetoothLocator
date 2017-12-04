@@ -1,26 +1,15 @@
 page-locator {
+  .myButton {
+    line-height: 20vh;
+    font-size: 60pt;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  .item {
+    transition-property: color;
+    transition-duration: 1s;
+  }
   .background {
     background-color: #000000;
-  }
-  .close{
-    background-color: #FFFF00;
-    line-height: 20vh;
-    font-size: 60pt;
-    color: #000000;
-    font-style: bold;
-    text-align: center;
-  }
-  .far{
-    background-color: #777700;
-    line-height: 20vh;
-    font-size: 60pt;
-    text-align: center;
-  }
-  .invisible{
-    background-color: #000000;
-    line-height: 20vh;
-    font-size: 60pt;
-    text-align: center;
-    color: #FFFF00;
   }
 }
